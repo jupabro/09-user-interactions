@@ -1,0 +1,21 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  width: 18rem;
+  .card-body {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    pointer-events: none; /* Prevent card-body from being interactive when hidden */
+  }
+
+  &:hover .card-body {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

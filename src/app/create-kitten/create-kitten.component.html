@@ -1,0 +1,58 @@
+<section class="tabs">
+    <div class="container">
+        <h2 class="title">Kitten Details</h2>
+        <div class="form-container">
+            <form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+
+                <div class="input-container">
+                    <label for="name">Name</label>
+                    <input type="text" [(ngModel)]="inputs.name" class="input" name="name" required minlength="3"
+                        maxlength="15" #nameRef="ngModel" />
+                    <div class="error-message" *ngIf="myForm.submitted && nameRef.errors && nameRef.errors['required']">
+                        Name is required
+                    </div>
+                    <div class="error-message"
+                        *ngIf="myForm.submitted && nameRef.errors && nameRef.errors['minlength']">
+                        Name must contain at least 3 characters
+                    </div>
+                    <div class="error-message"
+                        *ngIf="myForm.submitted && nameRef.errors && nameRef.errors['maxlength']">
+                        Name is too long (15) chars maximum
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <label for="breed">Breed</label>
+                    <input type="text" [(ngModel)]="inputs.breed" class="input" name="breed" minlength="3"
+                        maxlength="15" #breedRef="ngModel" />
+                    <div class="error-message"
+                        *ngIf="myForm.submitted && breedRef.errors && breedRef.errors['minlength']">
+                        Breed must contain at least 3 characters
+                    </div>
+                    <div class="error-message"
+                        *ngIf="myForm.submitted && breedRef.errors && breedRef.errors['maxlength']">
+                        Breed is too long (15) chars maximum
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <label for="birthday">Birthday</label>
+                    <input type="text" [(ngModel)]="inputs.birthday" class="input" name="birthday"
+                        #birthdayRef="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
+                        (blur)="validateBirthday(birthdayRef)" />
+                    <div class="error-message"
+                        *ngIf="myForm.submitted && birthdayRef.errors && birthdayRef.errors['invalidBirthday']">
+                        Invalid birthday. Valid formats are: "YYYY-MM-DD", "YYYY-MM", "YYYY".
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <label for="img">Image</label>
+                    <input type="text" [(ngModel)]="inputs.img" class="input" name="img" />
+                </div>
+                <button class="btn">Add Kitten</button>
+            </form>
+
+        </div>
+    </div>
+</section>

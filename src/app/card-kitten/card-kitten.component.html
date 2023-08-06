@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-image">
+        <img [src]="kitten.img" class="card-img-top" alt="kitten-image">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{kitten.name}}</h5>
+        <p *ngIf="kitten.breed && kitten.birthday" class="card-text">
+            {{kitten.name}} is a {{kitten.breed}}-cat and is born {{kitten.birthday}}.
+        </p>
+        <p *ngIf="kitten.breed && !kitten.birthday" class="card-text">
+            {{kitten.name}} is a {{kitten.breed}}-cat. The date of birth is unknown.
+        </p>
+        <p *ngIf="!kitten.breed && !kitten.birthday" class="card-text">
+            {{kitten.name}} is a really sweet cat. The date of birth and the breed are unknown.
+        </p>
+        <button *ngIf="showButton" (click)="adopt()" class="btn btn-primary">Adopt</button>
+    </div>
+</div>
